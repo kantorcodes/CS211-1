@@ -42,7 +42,7 @@ void print(int q[8]){
     static int count=0;
     cout << endl;
     cout << "  " << q[1] << " " << q[2] << endl;
-    cout << q[0] << " " << q[3] << " " << q[4] << q[7] << endl;
+    cout << q[0] << " " << q[3] << " " << q[4] << " " << q[7] << endl;
     cout << "  " << q[5] << " " << q[6] << endl;
 }
 

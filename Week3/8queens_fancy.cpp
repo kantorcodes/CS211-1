@@ -1,5 +1,5 @@
 #include <iostream>
-#include<cstdlib>
+#include <cstdlib>
 #include <cmath>
 using namespace std;
 
@@ -13,11 +13,27 @@ void print(int q[]){
 	char H=char(219);
 
 	//create black queen image
+	/*
 	bq[0]={' ',' ',' ',' ',' ',' ',' '};
 	bq[1]={' ', H ,' ', H ,' ', H ,' '};
 	bq[2]={' ', H , H , H , H , H ,' '};
 	bq[3]={' ', H , H , H , H , H ,' '};
 	bq[4]={' ',' ',' ',' ',' ',' ',' '};
+    */
+    //create black queen image without direct assignment from initializer list
+    for(i=0;i<5;i++){
+        for(j=0;j<7;j++){
+            if(i==0||i==4) bq[i][j]=' ';
+            if(i==1){
+                if(j%2==0) bq[i][j]=' ';
+                else bq[i][j]=H;
+            }
+            if(i==2||i==3){
+                if(j==0||j==6) bq[i][j]=' ';
+                else bq[i][j]=H;
+            }
+        }
+    }
 
 	//create white queen image by inverting black queen image
 	for(i=0;i<5;i++){

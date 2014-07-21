@@ -54,7 +54,7 @@ void print(int q[]){
 	for(i=0;i<8;i++)
 		for(j=0;j<8;j++)
 			if((i+j)%2==0)
-			board[i][j]=&wb;
+			board[i][j]=wb;
 			else board[i][j]=&bb;
 
 	// print the board via the pointers in array board

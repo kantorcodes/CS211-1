@@ -82,7 +82,8 @@ void print(int q[]){
 */
 
 int solve(int n){
-    int* q=new int[n];
+    int *q=new int[n];
+    //int q=[n];
     for(int i=0; i<n; i++) q[i]=0;
     int c=0, solutions=0;
     bool from_backtrack=false;

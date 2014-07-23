@@ -1,4 +1,5 @@
 #include <iostream>
+#include <assert.h>
 using namespace std;
 
 bool leapyear(int y){
@@ -6,7 +7,13 @@ bool leapyear(int y){
 }
 
 int main(){
-    cout << leapyear(2012)<<endl;
-    cout << leapyear(2100)<<endl;
+    assert(!leapyear(1805));
+    assert(!leapyear(2002));
+    assert(!leapyear(2222));
+    assert(!leapyear(2226));
+    assert(leapyear(1808));
+    assert(leapyear(2324));
+    assert(leapyear(2000));
+    assert(leapyear(2400));
     return 0;
 }

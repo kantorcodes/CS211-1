@@ -11,7 +11,7 @@ int* return_an_array(int n){
     int i=counter-1;
     int* q = new int[counter];
 
-    while(n/10!=0){
+    while(i>=0){
         q[i]=n%10;
         n/=10;
         i--;

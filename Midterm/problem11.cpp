@@ -8,8 +8,7 @@ that returns the number of prime numbers between from and to.
 using namespace std;
 
 bool isPrime(int n){
-    if(n<=1) return false;
-    for(int i=2; i<n; i++){
+    for(int i=2; i<n/2+1; i++){
         if(n%i==0) return false;
     }
     return true;
@@ -24,6 +23,6 @@ int number_of_primes(int from, int to){
 };
 
 int main(){
-    cout << number_of_primes(1,1000); //168
+    cout << number_of_primes(2,1000); //168
     return 0;
 };

@@ -71,7 +71,7 @@ bool backtrack(int &col){
 };
 
 /*
-void print(int q[]){
+void print(int q[]){v
     static int count =0;
     cout<< ++ count<<endl<<endl;
     int i;

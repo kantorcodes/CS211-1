@@ -3,6 +3,7 @@
 #include <assert.h>
 using namespace std;
 
+/*
 bool ok(int q[], int col){
     for(int i=0; i<col; i++)
         if(q[col]==q[i] || (col-i)==abs(q[col]-q[i])) return false;
@@ -18,3 +19,4 @@ int main(){
     assert(ok(c,7));
     return 0;
 }
+*/

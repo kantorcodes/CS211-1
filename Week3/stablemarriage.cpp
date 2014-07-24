@@ -32,9 +32,17 @@ bool ok(int q[], int col){
         new_man=col;
         new_woman=q[col];
 
+        /*
+           a. if the current man prefers the new woman to his partner and
+           b. if the new woman prefers the current man to her partner
+        */
         if(mp[current_man][current_woman]>mp[current_man][new_woman]&&
            wp[new_woman][current_man]<wp[new_woman][new_man]) return false;
 
+        /*
+           a.if the current woman prefers the new man to her partner and
+           b. if the new man prefers the current woman to his partner
+        */
         if(mp[new_man][current_woman]<mp[new_man][new_woman]&&
            wp[current_woman][new_man]<wp[current_woman][current_man]) return false;
     }

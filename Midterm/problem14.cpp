@@ -2,10 +2,11 @@
 using namespace std;
 
 int fib(int n){
-	static int memo[100] = {0, 1, 1};
-	if(n==1||n==2) return 1;
-	if(memo[n]!=0) return memo[n];
-	return memo[n]=fib(n-1)+fib(n-2);
+    static int memo[100]={0, 1, 1};
+    if(n==1||n==2) return 1;
+    if(memo[n]!=0) return memo[n];
+    memo[n]=fib(n-1)+fib(n-2);
+    return memo[n];
 }
 
 int main(){

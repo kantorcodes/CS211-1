@@ -7,7 +7,7 @@ typedef int my_2darray[1][1];
 my_2darray b[3][2];
 
 cout<<sizeof(b)<<endl;
-
+cout << sizeof(*b)<<endl;
 cout << (b+0) << endl;
 cout<<sizeof(b+0)<<endl;
 

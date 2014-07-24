@@ -15,7 +15,6 @@ int main(){
     //???
     //Dereference the first element in the array
     //The first element in the array is actually a row
-    //Returns the same thing as sizeof(*b)
     //Yields the same result as sizeof(*b)
     //Size of the first row in the array, b[0]
     //b[0] contains two elements, each 4 bytes, so 2*4 = 8 bytes

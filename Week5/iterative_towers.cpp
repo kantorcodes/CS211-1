@@ -16,7 +16,7 @@ int main(){
         t[2].push_back(n+1);
 
     // initialize towers and candidate
-    if(n&2!=0){
+    if((n%2)!=0){
         from=0;
         to=1;
         candidate=1;
@@ -40,7 +40,7 @@ int main(){
         else from=(to+2)%3;
 
         //odd number of rings
-        if(n%2!=0){
+        if((n%2)!=0){
             //"to" = closest tower on which the ring can be placed
             if(t[from].back()<t[(from+1)%3].back()) to=(from+1)%3;
             else to=(from+2)%3;

@@ -12,8 +12,9 @@ int main(){
     //intitialize the 3 towers
     for(int i=n+1;i>=1;i--)
         t[0].push_back(i);
-        t[1].push_back(n+1);
-        t[2].push_back(n+1);
+
+    t[1].push_back(n+1);
+    t[2].push_back(n+1);
 
     // initialize towers and candidate
     if((n%2)!=0){

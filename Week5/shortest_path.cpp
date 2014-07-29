@@ -19,7 +19,7 @@ int weight[rows][cols]={
     {6,1,8,2,7,4},
     {5,9,3,9,9,5},
     {8,4,1,3,2,6},
-    {3,7,2,8,6,4}};
+    {3,7,2,8,6,4}}; //313324 = 16
 
 int minimum(int i, int j){
     if(i<j) return i;
@@ -47,19 +47,28 @@ int cost(int i, int j){ // i is the row, j is the column
 
     // recursive call
     int left = cost(i, j-1);
-    int up = cost(i-1, j-1);
-    int down = cost(i-1, j+1);
+    int up = cost((i-1+rows)%rows, j-1); //negative modulos are calculated strangely in C++, so we need to add rows; otherwise it will return -1 when it should return 4
+    int down = cost((i+1)%rows, j-1);
 
     // find the value of the shortest path through cell (i,j)
-    return minimum(left, up, down);;
+    return weight[i][j] + minimum(left, up, down);
 }
+
+/*
+row  (i-1)   (i-1)%rows    (i-1+rows)%rows
+0      -1        -1                4
+1       0         0                0
+2       1         1                1
+3       2         2                2
+4       3         3                3
+*/
 
 int main(){
     int ex[rows];
 
     // get the shortest path out of each cell on the right
     for(int i=0; i<rows; i++)
-        ex[i]=cost(i,cols-1);
+        ex[i] = cost(i, cols-1);
 
     // now find the smallest of them
     int min = INT_MAX;
@@ -67,6 +76,6 @@ int main(){
         if(ex[i]<min) min = ex[i];
     }
 
-    cout<<"The shortest path is of length "<<min<<endl;
+    cout << "The shortest path is of length " << min << endl;
     return 0;
 }

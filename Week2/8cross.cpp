@@ -48,16 +48,16 @@ void print(int q[8]){
 
 int main(){
     int q[8]={0}, square=0;
-    q[square]=1;
+    //q[square]=1;
     bool from_backtrack=false;
 
     while(true){
         while(square<8){
         if(!from_backtrack)
-            q[square]=-1;
-            while(q[square]<8){
+            q[square]=0;
+            while(q[square]<9){
                 q[square]++;
-                if(q[square]==8){
+                if(q[square]==9){
                     backtrack(square);
                     continue;
                 }

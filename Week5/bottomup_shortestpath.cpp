@@ -46,6 +46,6 @@ int cost(int i, int j){
 }
 
 int main(){
-    cout << cost(5, 6);
+    cout << "The shortest path is of length " << cost(rows, cols) << endl;
     return 0;
 }

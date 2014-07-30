@@ -41,6 +41,13 @@ int cost(int i, int j){
         }
     }
 
+    for(int row=0; row<rows; row++){
+        for(int col=0; col<cols; col++){
+            cout << costs[row][col] << " ";
+        }
+        cout << endl;
+    }
+
     //find least path
     int min = INT_MAX;
     for(int iter=0; iter<rows; iter++){

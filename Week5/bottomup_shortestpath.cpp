@@ -22,30 +22,18 @@ int minimum(int i, int j, int k){
 int cost(int i, int j){
 
     //setup blank 2D array
-    int costs[rows][cols];
-    for(int row=0; row<rows; row++){
-        for(int col=0; col<cols; col++){
-            costs[row][col] = 0;
-        }
-    }
+    int costs[rows][cols] ={0};
 
     //populate array with costs from left adjacent 3 squares
-    for(int row=0; row<rows; row++){
-        for(int col=0; col<cols; col++){
+    for(int col=0; col<cols; col++){
+        for(int row=0; row<rows; row++){
             if(col==0) costs[row][0] = weight[row][0];
             else{
-                costs[row][col] = minimum(weight[(row-1+rows)%rows][col-1],
-                    weight[row][col-1],
-                    weight[(row+1)%rows][col-1]);
+                costs[row][col] = weight[row][col] + minimum(costs[(row-1+rows)%rows][col-1],
+                    costs[row][col-1],
+                    costs[(row+1)%rows][col-1]);
             }
         }
-    }
-
-    for(int row=0; row<rows; row++){
-        for(int col=0; col<cols; col++){
-            cout << costs[row][col] << " ";
-        }
-        cout << endl;
     }
 
     //find least path

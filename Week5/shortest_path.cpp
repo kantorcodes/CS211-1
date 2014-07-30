@@ -30,20 +30,22 @@ int minimum(int i, int j, int k){
     return minimum(i, minimum(j, k));
 }
 
-/*
-int fib(int n){
-	static int memo[100] = {0, 1, 1};
-	if(n==1||n==2) return 1;
-	if(memo[n]!=0) return memo[n];
-	return memo[n]=fib(n-1)+fib(n-2);
-}
-*/
-
 int cost(int i, int j){ // i is the row, j is the column
-    static int memo[100]={0};
+    static int memo[rows][cols];
+
+    //initialization of a 2D array with {0} produces inaccurate output
+    for(int i=0; i<rows; i++)
+        for(int j=0; j<cols; j++)
+            memo[i][j] = 0;
+
+    //check memo
+    if(memo[i][j]!=0) return memo[i][j];
 
     //base case
-    if(j==0) return weight[i][0];
+    if(j==0){
+        memo[i][j] = weight[i][0];
+        return weight[i][0];
+    }
 
     // recursive call
     int left = cost(i, j-1);
@@ -51,17 +53,9 @@ int cost(int i, int j){ // i is the row, j is the column
     int down = cost((i+1)%rows, j-1);
 
     // find the value of the shortest path through cell (i,j)
+    memo[i][j] = minimum(left, up, down);
     return weight[i][j] + minimum(left, up, down);
 }
-
-/*
-row  (i-1)   (i-1)%rows    (i-1+rows)%rows
-0      -1        -1                4
-1       0         0                0
-2       1         1                1
-3       2         2                2
-4       3         3                3
-*/
 
 int main(){
     int ex[rows];

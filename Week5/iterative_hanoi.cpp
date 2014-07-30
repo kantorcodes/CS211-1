@@ -1,69 +1,41 @@
+// this works for odd n
 #include <iostream>
-#include <vector>
+#include<vector>
+// NOTE: This program uses the vector container from the stl.
 using namespace std;
-
-void find_candidate(vector<int> *towers, int* previous_ring, int* candidate, int* ctower){
-    //Find candidate; towers[j].back() is an available ring
-    for(int j=0; j<3; j++){
-        if(!towers[j].empty()){
-            if(towers[j].back()!=*previous_ring && towers[j].back()<*candidate){
-                *candidate = towers[j].back();
-                *ctower = j;
-                cout << *candidate;
-                break;
-            }
-        }
-    }
-}
-
-void solve(int rings){
-    int previous_ring = -1, candidate = 2, ctower = 0, i, j;
-    vector<int> a, b, c;
-    vector<int> towers[3] = {a, b, c};
-
-    //Populate tower a
-    for(i=rings; i>0; i--) towers[0].push_back(i);
-
-    //find_candidate(towers, &previous_ring, &candidate, &ctower);
-    for(j=0; j<3; j++){
-        if(!towers[j].empty()){
-            if(towers[j].back()!=previous_ring && towers[j].back()<candidate){
-                candidate = towers[j].back();
-                ctower = j;
-                cout << candidate;
-                break;
-            }
-        }
-    }
-
-    //Move candidate
-    //Even number of rings; move left
-    if(rings%2==0){
-        towers[ctower].pop_back();
-        if(towers[(ctower+1)%3].back()>candidate) towers[(ctower+1)%3].push_back(candidate);
-        else if(towers[(ctower+2)%3].back()>candidate) towers[(ctower+2)%3].push_back(candidate);
-        else{
-            for(j=0; j<3; j++){
-                if(!towers[j].empty()){
-                    if(towers[j].back()!=previous_ring && towers[j].back()<candidate){
-                        candidate = towers[j].back();
-                        ctower = j;
-                        cout << candidate;
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
-    //Odd number of rings; move right
-    else{
-
-    }
-''
-}
-
-int main(){
-    solve(10);
-    return 0;
+void main(){
+ vector<int> t[3]; // three towers A,B,C represented as an array of 3 vectors
+ int n, candidate,to, from, move=0; // move counts the move number
+ cout<<"Please enter an ODD number of rings to move: ";
+ cin>>n;
+ cout<<endl;
+ //intitialize the 3 towers
+ for(int i=n+1;i>=1;i--)
+ t[0].push_back(i);
+ t[1].push_back(n+1);
+ t[2].push_back(n+1);
+ // initialize towers and candidate
+ from=0;
+ to=1;
+ candidate=1;
+ while( t[1].size()<n+1){ // there are still rings to transfer to tower B = t[1]
+ //write it
+ cout<<"move number "<<++move<<": Transfer ring <<candidate<<
+" from tower "<< char(from+65)<<" to tower "<<char(to+65)<<endl;
+ //do it: move the disks around
+ 1. Push the top of the “from” tower to the “to” tower
+2. Remove the ring from the “from” tower
+ //get next “from tower” It’s not the most recent “to” – so which is it?
+ if( )
+ from=;
+ else
+ from=;
+ // get next “to tower”
+ if( )
+ to= ;
+ else
+ to= ;
+ //get next candidate
+ candidate= ; // it’s on the top of the current “from tower”
+ }
 }

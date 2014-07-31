@@ -20,7 +20,7 @@ int weight[rows][cols]={
     {5,9,3,9,9,5},
     {8,4,1,3,2,6},
     {3,7,2,8,6,4}}; //313324 = 16
-int directions[rows][cols]={0}; //1=up; 0=left; -1=down
+int directions[rows][cols]={0}; //-1=up; 0=left; 1=down
 
 int cost(int i, int j){ // i is the row, j is the column
     static int memo[rows][cols] = {0};

@@ -67,7 +67,7 @@ int cost(int i, int j){ // i is the row, j is the column
 
 int main(){
     //array of shortest paths; array of rows taken; index of the smallest path by the last column
-    int ex[rows], seq[rows], min_index;
+    int ex[rows], seq[cols], min_index;
 
     // get the shortest path out of each cell on the right
     for(int i=0; i<rows; i++)

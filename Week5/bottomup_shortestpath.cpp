@@ -13,6 +13,7 @@ int weight[rows][cols]={
 //setup blank 2D array
 int costs[rows][cols] ={0};
 int directions[rows][cols] = {0}; //-1=up; 0=left; 1=down
+int min_index; //to be used in main when determining where to start the path trace
 
 int minimum(int arr[]){
     int min = INT_MAX;
@@ -21,15 +22,6 @@ int minimum(int arr[]){
     }
 
     return min;
-}
-
-int minimum(int i, int j){
-    if(i<j) return i;
-    return j;
-}
-
-int minimum(int i, int j, int k){
-    return minimum(i, minimum(j, k));
 }
 
 int cost(){
@@ -41,19 +33,57 @@ int cost(){
             if(col==0) costs[row][0] = weight[row][0];
             else{
 
-                //the same thing as minimum(left, up, down)
-                costs[row][col] = weight[row][col] + minimum(costs[(row-1+rows)%rows][col-1],
-                    costs[row][col-1],
-                    costs[(row+1)%rows][col-1]);
+                //determine costs for adjacent cells, moving left to right
+                int up = costs[(row-1+rows)%rows][col-1];
+                int left = costs[row][col-1];
+                int down = costs[(row+1)%rows][col-1];
+
+                //calculate min(left, up, down) and determine direction in the cell, i.e. which way the shortest path is going
+                int min = left;
+                directions[row][col] = 0;
+                if(up < min){
+                    min = up;
+                    directions[row][col] = -1;
+                }
+                if(down < min){
+                    min = down;
+                    directions[row][col] = 1;
+                }
+
+                //add weight in current cell to min(up, left, down); insert into costs array
+                costs[row][col] = weight[row][col] + min;
             }
         }
     }
 
     //find least path
-    return minimum(costs[cols-1]);
+    int min = INT_MAX;
+    for(int iter=0; iter<rows; iter++){
+        if(costs[iter][cols-1]<min){
+            min = costs[iter][cols-1];
+            min_index = iter;
+        }
+    }
+
+    return min;
 }
 
 int main(){
+    //array containing the sequence of rows which the path takes
+    int seq[cols];
+
+    //print shortest path length
     cout << "The shortest path is of length " << cost() << endl;
+
+    //trace rows
+    seq[cols-1] = min_index;
+    for(int col=cols-2; col>=0; col--) seq[col] = seq[col+1] + directions[seq[col+1]][col+1];
+
+    //add 1 to rows because of zero-based indexing
+    for(int col=0; col<cols; col++) seq[col]++;
+
+    //print path
+    for(int j=0; j<cols; j++) cout << seq[j] << " ";
+
     return 0;
 }

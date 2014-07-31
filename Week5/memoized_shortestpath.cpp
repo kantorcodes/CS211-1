@@ -20,7 +20,6 @@ int weight[rows][cols]={
     {5,9,3,9,9,5},
     {8,4,1,3,2,6},
     {3,7,2,8,6,4}}; //313324 = 16
-static int memo[rows][cols];
 
 int minimum(int i, int j){
     if(i<j) return i;
@@ -32,17 +31,7 @@ int minimum(int i, int j, int k){
 }
 
 int cost(int i, int j){ // i is the row, j is the column
-    static bool firstTime = true;
-
-    if(firstTime){
-    //initialization of a 2D array with {0} produces inaccurate output
-        for(int i=0; i<rows; i++){
-            for(int j=0; j<cols; j++){
-                memo[i][j] = 0;
-            }
-        }
-        firstTime = false;
-    }
+    static int memo[rows][cols] = {0};
 
     //base case
     if(j==0){

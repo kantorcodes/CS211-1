@@ -12,20 +12,12 @@ int weight[rows][cols]={
 
 //setup blank 2D array
 int costs[rows][cols] ={0};
+int directions[rows][cols] = {0};
 
 int minimum(int arr[]){
     int min = INT_MAX;
     for(int iter=0; iter<rows; iter++){
         if(costs[iter][cols-1]<min) min = costs[iter][cols-1];
-    }
-
-    return min;
-}
-
-int rminimum(int arr[]){
-    int min = INT_MAX;
-    for(int iter=0; iter<rows; iter++){
-        if(arr[iter]<min) min = arr[iter];
     }
 
     return min;
@@ -40,37 +32,21 @@ int minimum(int i, int j, int k){
     return minimum(i, minimum(j, k));
 }
 
-//inefficient trace of row sequence
-int trace(){
-    int sequence[cols] = {0}, buffer[rows] = {0};
-    for(int col=0; col<cols; col++){
-        for(int row=0; row<rows; row++){
-            buffer[row] =  costs[row][col];
-        }
-        sequence[col] = rminimum(buffer);
-        cout << sequence[col] << ", ";
-    }
-}
-
 int cost(){
     //populate array with costs from left adjacent 3 squares
     for(int col=0; col<cols; col++){
         for(int row=0; row<rows; row++){
+
+            //if we're in the first column, then just set to the weight; there's nothing to the left
             if(col==0) costs[row][0] = weight[row][0];
             else{
+
+                //the same thing as minimum(left, up, down)
                 costs[row][col] = weight[row][col] + minimum(costs[(row-1+rows)%rows][col-1],
                     costs[row][col-1],
                     costs[(row+1)%rows][col-1]);
             }
         }
-    }
-
-    for(int row=0; row<rows; row++){
-        for(int col=0; col<cols; col++){
-            if(costs[row][col]/10>1) cout << costs[row][col] << " ";
-            else cout << costs[row][col] << "  ";
-        }
-        cout << endl;
     }
 
     //find least path
@@ -79,6 +55,5 @@ int cost(){
 
 int main(){
     cout << "The shortest path is of length " << cost() << endl;
-    trace();
     return 0;
 }

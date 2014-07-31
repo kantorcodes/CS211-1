@@ -22,15 +22,6 @@ int weight[rows][cols]={
     {3,7,2,8,6,4}}; //313324 = 16
 int directions[rows][cols]={0}; //1=up; 0=left; -1=down
 
-int minimum(int i, int j){
-    if(i<j) return i;
-    return j;
-}
-
-int minimum(int i, int j, int k){
-    return minimum(i, minimum(j, k));
-}
-
 int cost(int i, int j){ // i is the row, j is the column
     static int memo[rows][cols] = {0};
 

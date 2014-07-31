@@ -53,7 +53,7 @@ int cost(int i, int j){ // i is the row, j is the column
     memo[i][j] = weight[i][j] + min;
 
     //return shortest path so far
-    return weight[i][j] + minimum(left, up, down);
+    return memo[i][j];
 }
 
 int main(){

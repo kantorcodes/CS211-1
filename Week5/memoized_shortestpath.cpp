@@ -20,6 +20,7 @@ int weight[rows][cols]={
     {5,9,3,9,9,5},
     {8,4,1,3,2,6},
     {3,7,2,8,6,4}}; //313324 = 16
+int directions[rows][cols]={0}; //1=up; 0=left; -1=down
 
 int minimum(int i, int j){
     if(i<j) return i;
@@ -48,14 +49,25 @@ int cost(int i, int j){ // i is the row, j is the column
     int down = cost((i+1)%rows, j-1);
 
     // find the value of the shortest path through cell (i,j)
-    memo[i][j] = weight[i][j] + minimum(left, up, down);
+    int min = left;
+    directions[i][j] = 0;
+    if(up < min){
+        min = up;
+        directions[i][j] = -1;
+    }
+    if(down < min){
+        min = down;
+        directions[i][j] = 1;
+    }
+    memo[i][j] = weight[i][j] + min;
 
     //return shortest path so far
     return weight[i][j] + minimum(left, up, down);
 }
 
 int main(){
-    int ex[rows];
+    //array of shortest paths; array of rows taken; index of the smallest path by the last column
+    int ex[rows], seq[rows], min_index;
 
     // get the shortest path out of each cell on the right
     for(int i=0; i<rows; i++)
@@ -64,9 +76,22 @@ int main(){
     // now find the smallest of them
     int min = INT_MAX;
     for(int i=0; i<rows; i++){
-        if(ex[i]<min) min = ex[i];
+        if(ex[i]<min){
+            min = ex[i];
+            min_index = i;
+        }
     }
 
-    cout << "The shortest path is of length " << min << endl;
+    //trace rows
+    seq[cols-1] = min_index;
+    for(int col=cols-2; col>=0; col--) seq[col] = seq[col+1] + directions[seq[col+1]][col+1];
+
+    //add 1 to rows because of zero-based indexing
+    for(int col=0; col<cols; col++) seq[col]++;
+
+    //print path
+    for(int j=0; j<cols; j++) cout << seq[j] << " ";
+
+    cout << endl << "The shortest path is of length " << min << endl;
     return 0;
 }

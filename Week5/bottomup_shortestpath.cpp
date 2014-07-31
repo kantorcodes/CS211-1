@@ -12,7 +12,7 @@ int weight[rows][cols]={
 
 //setup blank 2D array
 int costs[rows][cols] ={0};
-int directions[rows][cols] = {0};
+int directions[rows][cols] = {0}; //-1=up; 0=left; 1=down
 
 int minimum(int arr[]){
     int min = INT_MAX;

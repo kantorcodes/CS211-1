@@ -1,3 +1,4 @@
+#include <climits>
 #include <iostream>
 using namespace std;
 
@@ -51,7 +52,7 @@ int cost(){
                 }
 
                 //add weight in current cell to min(up, left, down); insert into costs array
-                costs[row][col] = weight[row][col] + min;
+                costs[rows][col] = weight[row][col] + min;
             }
         }
     }

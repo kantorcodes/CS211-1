@@ -10,9 +10,11 @@ problem. What needs to be modified is the “OK” function.
 #include <iostream>
 using namespace std;
 
+int k, n;
+
 bool ok(int q[], int col){
     for(int i=0; i<col; i++)
-        if(q[col]==q[i] || (col-i)==abs(q[col]-q[i])) return false;
+        if(col-i==abs(q[col]-q[i])) return false;
     return true;
 };
 
@@ -25,20 +27,18 @@ void print(int q[]){
     static int count =0;
     cout<< ++ count<<endl<<endl;
     int i;
-    for(i=0; i<8; i++)
+    for(i=0; i<n; i++)
     cout<<q[i]<<" ";
     cout<<endl<<endl;
 };
 
 int main(){
-    int k, n;
     while(true){
 
         //User input
         cout << "Enter n: ";
         cin >> n;
-        cout <
-        < "Enter k: ";
+        cout << "Enter k: ";
         cin >> k;
         if(n<0) break;
 

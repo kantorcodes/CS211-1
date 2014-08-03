@@ -1,4 +1,4 @@
-s/*
+/*
 Write a program that inputs two integers n and k, where n>=k. Your program should calculate
 the number of different ways that k bishops could be placed on an nXn chessboard.
 

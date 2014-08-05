@@ -4,22 +4,18 @@ using namespace std;
 
 int k;
 
-bool ok(int q[], int c, int n){
-    for(int i = 0 ;i < c; i++) { //for every bishop
+bool ok(int q[], int b, int size){
+    //identify the row and column the bishop is in
+    int row = q[b]/size, column = q[b]%size, current_row, current_column;
 
-        //i1 + j1 =
-        int i1 = q[i]/n; //square/gridsize
-        int j1 = q[i]%n; //square%gridsize
+    for(int i=0; i<b; i++){ //for every bishop
+        current_row = q[i]/size;
+        current_column = q[i]%size;
 
-        //i2 + j2 =
-        int i2 = q[c]/n; //currentsquare/gridsize
-        int j2 = q[c]%n; //currentsquare%gridsize
-
-        if(i1 + j1 == i2 + j2)
-            return false;
-        if(i1 - j1 == i2 - j2)
-            return false;
+        //diagonal test
+        if(abs(row-current_row)==abs(column-current_column)) return false;
     }
+
     return true;
 };
 
@@ -104,3 +100,11 @@ When a solution is found, q[c]++ (akin to incrementing the first row in the 8 qu
 system("PAUSE");
 return 0;
 }
+
+
+
+
+
+
+
+

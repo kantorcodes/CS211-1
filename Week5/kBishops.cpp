@@ -22,7 +22,7 @@ bool ok(int q[], int b, int size){
         current_column = q[i]%size;
 
         //diagonal test
-        if(abs(row)-abs(current_row)==abs(column)-abs(current_column)) return false;
+        if(abs(row-current_row)==abs(column-current_column)) return false;
     }
 
     return true;
@@ -66,29 +66,33 @@ int main(){
 
         //Solution/backtracking algorithm
         int* q = new int[k]; //q[bishop] is a square on the n*n grid
-        for(int i=0; i<k; i++) q[i]=-1;
         int b = 0;
-        bool from_backtrack=false;
+        q[b] = -1;
 
-        while(true){
-            while(b<k){
-            //if(!from_backtrack)
-                //q[b]=-1;
-                while(q[b]<n*n){
+        while(true){ //until we found all the possible solutions
+            while(b<k){ //for each bishop
+                while(q[b]<n*n){ //for each square
                     q[b]++;
+                    if(ok(q,b,n)) break;
                     if(q[b]==n*n){
                         backtrack(b);
                         continue;
                     }
-                    if(ok(q,b,n)) break;
+                    else{
+                    }
                 }
-                b++;
-                from_backtrack=false;
             }
             print(q);
             backtrack(b);
-            from_backtrack=true;
         }
     }
     return 0;
 }
+
+
+
+
+
+
+
+

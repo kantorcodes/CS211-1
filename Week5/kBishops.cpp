@@ -3,7 +3,7 @@ Write a program that inputs two integers n and k, where n>=k. Your program shoul
 the number of different ways that k bishops could be placed on an nXn chessboard.
 
 Structure your program using the backtracking scheme that we have used for the eight queens
-problem. What needs to be modified is the ìOKî function.
+problem. What needs to be modified is the ‚ÄúOK‚Äù function.
 */
 
 #include <cstdlib>
@@ -57,7 +57,7 @@ int main(){
                     if(ok(q,b,n)) break;
                     else q[b]++;
                 }
-/home/neil/Desktop/Dev/CS211/Final/Rat.cpp
+
                 if(q[b]==n*n){
                     backtrack(b, count);
                     q[b]++;

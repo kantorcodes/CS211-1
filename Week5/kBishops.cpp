@@ -28,17 +28,12 @@ bool ok(int q[], int b, int size){
     return true;
 };
 
-void backtrack(int &bishop){
+void backtrack(int &bishop, int count){
     bishop--;
-    if(bishop==-1) exit(1);
-};
-
-void print(int q[]){
-    static int count =0;
-    cout << ++count << endl << endl;
-    for(int i=0; i<n; i++)
-    cout << q[i] << " ";
-    cout << endl << endl;
+    if(bishop==-1){
+        cout << k << " bishops can be placed on an " << n << " by " << n << " chessboard in " << count << " different ways.";
+        exit(1);
+    }
 };
 
 /*
@@ -66,24 +61,31 @@ int main(){
 
         //Solution/backtracking algorithm
         int* q = new int[k]; //q[bishop] is a square on the n*n grid
-        int b = 0;
-        q[b] = -1;
+        int count = 0, b = 0, t;
+        q[b] = 0;
 
         while(true){ //until we found all the possible solutions
             while(b<k){ //for each bishop
                 while(q[b]<n*n){ //for each square
-                    q[b]++;
                     if(ok(q,b,n)) break;
-                    if(q[b]==n*n){
-                        backtrack(b);
-                        continue;
-                    }
-                    else{
-                    }
+                    else q[b]++;
+                }
+
+                if(q[b]==n*n){
+                    backtrack(b, count);
+                    q[b]++;
+                    continue;
+                }
+
+                else{
+                    t = q[b];
+                    b++;
+                    q[b] = t;
                 }
             }
-            print(q);
-            backtrack(b);
+            count++;
+            backtrack(b, count);
+            q[b]++;
         }
     }
     return 0;

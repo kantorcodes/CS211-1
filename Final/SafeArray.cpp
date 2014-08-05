@@ -31,7 +31,7 @@ public:
 
     // single parameter constructor lets us
     // create a SA almost like a "standard" one by writing
-    // SA x(10); and getting an array x indexed from 0 to 9
+    // SA (10); and getting an array x indexed from 0 to 9
     SA(int i){
         low=0;
         high=i-1;

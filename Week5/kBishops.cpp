@@ -10,27 +10,49 @@ problem. What needs to be modified is the “OK” function.
 #include <iostream>
 using namespace std;
 
-int k, n;
+int k, n; //number of bishops, size of the board
 
-bool ok(int q[], int col){
-    for(int i=0; i<col; i++)
-        if(col-i==abs(q[col]-q[i])) return false;
+//q is an array of squares, where b is a bishop and q[b] is the square the bishop occupies
+bool ok(int q[], int b, int size){
+    //identify the row and column the bishop is in
+    int row = q[b]/size, column = q[b]%size, current_row, current_column;
+
+    for(int i=0; i<b; i++){ //for every bishop
+        current_row = q[i]/size;
+        current_column = q[i]%size;
+
+        //diagonal test
+        if(abs(row)-abs(current_row)==abs(column)-abs(current_column)) return false;
+    }
+
     return true;
 };
 
-void backtrack(int &col){
-    col--;
-    if(col==-1) exit(1);
+void backtrack(int &bishop){
+    bishop--;
+    if(bishop==-1) exit(1);
 };
 
 void print(int q[]){
     static int count =0;
-    cout<< ++ count<<endl<<endl;
-    int i;
-    for(i=0; i<n; i++)
-    cout<<q[i]<<" ";
-    cout<<endl<<endl;
+    cout << ++count << endl << endl;
+    for(int i=0; i<n; i++)
+    cout << q[i] << " ";
+    cout << endl << endl;
 };
+
+/*
+For each of the k bishops, (69)
+look at all the possible boxes the bishop could be in (71)
+If it's ok to put bishop c in box q[c], (72)
+    then do so, and go to the next bishop. (82)
+        If there is no next bishop, then one or more of the bishops are causing an issue, so backtrack (78)
+        But if there is no next bishop and the solution was okay, then break out of the whole loop (q[c]<n*n still satisfied) and do the after-all-bishops sequence. (73)
+If it's not ok to put bishop c in box q[c], (74)
+    then go to the next box. (75)
+If a solution was found, then you don't want to go back a box (like going back a column), so store q[c] and go to the next bishop. (83)
+When a solution is found, q[c]++ (akin to incrementing the first row in the 8 queens problem), i.e. the starting point. (91)
+*/
 
 int main(){
     while(true){
@@ -43,27 +65,28 @@ int main(){
         if(n<0) break;
 
         //Solution/backtracking algorithm
-        int q[n]; q[0]=0;
-        int c=0;
+        int* q = new int[k]; //q[bishop] is a square on the n*n grid
+        for(int i=0; i<k; i++) q[i]=-1;
+        int b = 0;
         bool from_backtrack=false;
 
         while(true){
-            while(c<n){
-            if(!from_backtrack)
-                q[c]=-1;
-                while(q[c]<n){
-                    q[c]++;
-                    if(q[c]==n){
-                        backtrack(c);
+            while(b<k){
+            //if(!from_backtrack)
+                //q[b]=-1;
+                while(q[b]<n*n){
+                    q[b]++;
+                    if(q[b]==n*n){
+                        backtrack(b);
                         continue;
                     }
-                    if(ok(q,c)) break;
+                    if(ok(q,b,n)) break;
                 }
-                c++;
+                b++;
                 from_backtrack=false;
             }
             print(q);
-            backtrack(c);
+            backtrack(b);
             from_backtrack=true;
         }
     }

@@ -57,7 +57,7 @@ int main(){
                     if(ok(q,b,n)) break;
                     else q[b]++;
                 }
-
+/home/neil/Desktop/Dev/CS211/Final/Rat.cpp
                 if(q[b]==n*n){
                     backtrack(b, count);
                     q[b]++;

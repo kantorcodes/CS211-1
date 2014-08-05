@@ -36,19 +36,6 @@ void backtrack(int &bishop, int count){
     }
 };
 
-/*
-For each of the k bishops, (69)
-look at all the possible boxes the bishop could be in (71)
-If it's ok to put bishop c in box q[c], (72)
-    then do so, and go to the next bishop. (82)
-        If there is no next bishop, then one or more of the bishops are causing an issue, so backtrack (78)
-        But if there is no next bishop and the solution was okay, then break out of the whole loop (q[c]<n*n still satisfied) and do the after-all-bishops sequence. (73)
-If it's not ok to put bishop c in box q[c], (74)
-    then go to the next box. (75)
-If a solution was found, then you don't want to go back a box (like going back a column), so store q[c] and go to the next bishop. (83)
-When a solution is found, q[c]++ (akin to incrementing the first row in the 8 queens problem), i.e. the starting point. (91)
-*/
-
 int main(){
     while(true){
 

@@ -2,23 +2,16 @@
 #include <cstdlib>
 using namespace std;
 
-bool ok(int q[8], int square){
-    int adjacents[8][4]={{-1, -1, -1, -1},
-                        {0, -1, -1, -1},
-                        {1, -1, -1, -1},
-                        {0, 1, 2, -1},
-                        {1, 2, 3, -1},
-                        {0, 3, 4, -1},
-                        {3, 4, 5, -1},
-                        {2, 4, 6, -1}};
-    for(int i=0; i<square; i++){
-        if(q[i]==q[square]) return false;
-    }
-    for(int j=0; adjacents[square][j]!=-1; j++){
-        if(abs(q[square]-q[adjacents[square][j]])==1) return false;
-    }
-    return true;
-};
+bool ok(int cross[8],int c){
+         int a[8][4]={{-1},{0,-1},{1,-1},{0,1,2,-1},{1,2,3,-1},{0,3,4,-1},{3,4,5,-1},{2,4,6,-1}};
+         for(int i=0;i<c;i++){
+                if(cross[i]==cross[c]) return false;
+         }
+         for(int i=0; a[c][i]!=-1;i++){
+                if(abs(cross[c]-cross[a[c][i]])==1) return false;
+         }
+         return true;
+}
 
 void print(int q[8]){
     static int count=0;

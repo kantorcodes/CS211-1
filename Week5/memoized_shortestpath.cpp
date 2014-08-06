@@ -72,10 +72,14 @@ int main(){
             min_index = i;
         }
     }
-
+    int c = cols;
     //trace rows
-    seq[cols-1] = min_index;
-    for(int col=cols-2; col>=0; col--) seq[col] = seq[col+1] + directions[seq[col+1]][col+1];
+    //seq[cols-1] = min_index;
+    //for(int col=cols-2; col>=0; col--) seq[col] = seq[col+1] + directions[seq[col+1]][col+1];
+    seq[0] = min_index;
+    for(int col=1; col<=cols-1; col++){
+        seq[col] = seq[col-1] + directions[seq[col-1]][--c];
+    }
 
     //add 1 to rows because of zero-based indexing
     for(int col=0; col<cols; col++) seq[col]++;

@@ -66,7 +66,7 @@ void print(int q[]){
 };
 
 int main(){
-    int q[3]; q[0]=0;
+    int q[3];
     int c=0;
     bool from_backtrack=false;
 

@@ -31,16 +31,16 @@ int min(vector<int> x){
 //b: 1, 8, 10, 14
 //would produce the output 1, 2, 3, 8, 7, 10, 12, which is incorrect
 vector<int> stupid_merge( vector<int> a, vector<int> b){
-    int min_a = INT_MAX, min_b = INT_MAX, max_size = (a.size()>b.size())?a.size():b.size(); //ternary conditional to assign max_size
+    int max_size = (a.size()>b.size())?a.size():b.size(); //ternary conditional to assign max_size
     vector<int> merged;
     for(int i=0; i<max_size; i++){
 
         //in case one vector is larger than the other
-        if(i>a.size()){
+        if(i>a.size()-1){
             merged.push_back(b[i]);
             continue;
         }
-        if(i>b.size()){
+        if(i>b.size()-1){
             merged.push_back(a[i]);
             continue;
         }
@@ -59,6 +59,28 @@ vector<int> stupid_merge( vector<int> a, vector<int> b){
 }
 
 vector<int> unsorted_merge( vector<int> a, vector<int> b){
+    int max_size = (a.size()>b.size())?a.size():b.size(); //ternary conditional to assign max_size
+    int min_value = 0;
+    vector<int> merged;
+    for(int i=0; i<max_size; i++){
 
+        //in case one vector is larger than the other
+        if(i>a.size()){
+            merged.push_back(b[i]);
+            continue;
+        }
+        if(i>b.size()){
+            merged.push_back(a[i]);
+            continue;
+        }
+    }
+}
+
+int main(){
+    vector<int> a = {2, 4, 6, 8};
+    vector<int> b = {1, 3, 7, 10, 13};
+    vector<int> n = stupid_merge(a, b);
+    for(int i=0; i<n.size(); i++) cout << n[i] << ", ";
+    return 0;
 }
 

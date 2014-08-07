@@ -25,9 +25,9 @@ class Complex {
     //(a+bi) + (c+di) = (a+c) + (b+d)i
     Complex operator+(Complex kComplex){
         double a = r;
-        double c = c.r;
+        double c = kComplex.r;
         double b = i;
-        double d = c.i;
+        double d = kComplex.i;
         Complex complex;
         complex.r = a+c;
         complex.i = b+d;
@@ -38,9 +38,9 @@ class Complex {
     //(a+bi) - (c+di) = (a-c) + (b-d)i
     Complex operator-(Complex kComplex){
         double a = r;
-        double c = c.r;
+        double c = kComplex.r;
         double b = i;
-        double d = c.i;
+        double d = kComplex.i;
         Complex complex;
         complex.r = a-c;
         complex.i = b-d;
@@ -51,9 +51,9 @@ class Complex {
     //(a+bi) (c+di) = (ac-bd) + (bc+ad)i.
     Complex operator*(Complex kComplex){
         double a = r;
-        double c = c.r;
+        double c = kComplex.r;
         double b = i;
-        double d = c.i;
+        double d = kComplex.i;
         Complex complex;
         complex.r = a*c - b*d;
         complex.i = b*c + a*d;
@@ -61,6 +61,47 @@ class Complex {
     }
 
     //overloaded divide function for Complex – should return Complex
-     get and set for both r and i
-     overloaded input and output functions for Complex
+    //http://upload.wikimedia.org/math/c/4/8/c4822340ecad680d1556485a55e91f66.png
+    Complex operator/(Complex kComplex){
+        double a = r;
+        double c = kComplex.r;
+        double b = i;
+        double d = kComplex.i;
+        Complex complex;
+        complex.r = ((a*c)+(b*d))/((c*c)+(d*d));
+        complex.i = ((b*c)-(a*d))/((c*c)+(d*d));
+        return complex;
+    }
+
+    //get and set for both r and i
+    int getR(){
+        return r;
+    }
+
+    int getI(){
+        return i;
+    }
+
+    void setR(double n){
+        r = n;
+    }
+
+    void setI(double n){
+        i = n;
+    }
+
+    //overloaded input and output functions for Complex
+    ostream& operator<<(ostream& os, Complex kComplex){
+        os << kComplex.r << " + " << kComplex.i << "i";
+        return os; //for chaining
+    }
+
+    istream& opreator<<(istream& is, Complex& kComplex){
+        is >> kComplex.r >> kComplex. i;
+        return is; //for chaining
+    }
 };
+
+int main(){
+    return 0;
+}

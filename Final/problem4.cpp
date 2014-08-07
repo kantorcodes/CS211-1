@@ -4,6 +4,11 @@ saw the run-time stack in class. It is a data structure that allows us to “push”
 “top”, to “pop” from the “top”. In fact, for the no-recursive towers, we used a vector as a stack.
 */
 
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+using namespace std;
+
 class stack{
     private:
         int top; // top is the index into the array for the current top
@@ -31,11 +36,27 @@ class stack{
         ~stack(){
             delete[]p;
         };
-        bool empty();
-        void push( int ); // don’t forget to test if stack is full
-        int pop(); // return and remove the “top” element of the stack.
-        // don’t forget to test if the stack is empty
-}
+
+        bool empty(){
+            return size==0;
+        };
+
+        void push(int n){
+            if(top+1 >= size) exit(1); //don’t forget to test if stack is full
+            else{
+                p[top] = n;
+                top++;
+            }
+        };
+
+        int pop(){
+            if(size==0||top<0) exit(1); //don’t forget to test if the stack is empty
+            else{
+                return p[top];
+                top--;
+            }
+        }; // return and remove the “top” element of the stack.
+};
 
 //Test it with the following main function:
 int main(){
@@ -43,7 +64,7 @@ int main(){
     s.push(1);
     s.push(2);
     s.push(3);
-    for (i=0; i<3; i++)
+    for (int i=0; i<3; i++)
     cout<<s.pop(); // should print 3,2 1
     return 0;
 }

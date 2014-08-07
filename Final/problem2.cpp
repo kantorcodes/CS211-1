@@ -3,7 +3,8 @@
 */
 
 /*
-Function P
+Function P recursively calculates all possible arrangements of the elements in array v with size n, starting at the index start.
+It does this by rotating the array to the left (shifting it one element to the left), and then swapping each element in the array.
 */
 
 #include <iostream>
@@ -41,12 +42,12 @@ int main(){
  Function P
  ==================================*/
 void P(int v[],int start, int n){
-    Print(v,n);
+    Print(v,n); //print v (n is the size of v)
     if (start<n){
         int i,j;
-        for(i=n-2; i>=start; i--){
-            for(j=i+1; j<n; j++){
-                Swap(v,i,j);
+        for(i=n-2; i>=start; i--){ //for every index i from n-2 to start, decreasing
+            for(j=i+1; j<n; j++){ //for every element from i+1 to n, increasing
+                Swap(v,i,j); //swap them
                 P(v,i+1,n);
             }
             Rotate_Left(v,i,n);

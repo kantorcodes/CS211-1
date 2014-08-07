@@ -93,6 +93,7 @@ class Complex {
     friend ostream& operator<<(ostream& os, Complex kComplex);
     friend istream& operator>>(istream& is, Complex kComplex);
 };
+
     //overloaded input and output functions for Complex
     ostream& operator<<(ostream& os, Complex kComplex){
         os << kComplex.r << " + " << kComplex.i << "i";

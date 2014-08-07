@@ -19,7 +19,7 @@ class stack{
         //constructor
         //a stack to hold 100
         stack(){
-            top = 99;
+            top = 0;
             p = new int[100];
             size = 100;
         };
@@ -27,7 +27,7 @@ class stack{
         //constructor
         //a stack to hold n elements
         stack(int n){
-            top = n-1;
+            top = 0;
             p = new int[n];
             size = n;
         }
@@ -52,10 +52,10 @@ class stack{
         int pop(){
             if(size==0||top<0) exit(1); //don’t forget to test if the stack is empty
             else{
-                return p[top];
                 top--;
+                return p[top];  //return and remove the “top” element of the stack.
             }
-        }; // return and remove the “top” element of the stack.
+        };
 };
 
 //Test it with the following main function:

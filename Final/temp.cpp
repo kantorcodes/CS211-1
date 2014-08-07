@@ -1,100 +1,71 @@
-
-#include <cstdlib>
 #include <iostream>
+
 using namespace std;
-bool ok(int q[8],int c){
-    for(int i=0;i<8;i++){
-      if(q[i]==q[c]||abs(q[c]-q[i]==c-i)) return false;
+
+void merge(int*,int*,int,int,int);
+void mergesort(int *a, int*b, int low, int high)
+{
+    int pivot;
+    if(low<high)
+    {
+        pivot=(low+high)/2;
+        mergesort(a,b,low,pivot);
+        mergesort(a,b,pivot+1,high);
+        merge(a,b,low,pivot,high);
     }
-    return true;
 }
-void backtrack(int &c){
-    c--;
-    if(c==-1) exit(1);
-}
-int main(int argc,char* argv[]){
-    int i,j,k,l;int q[8];int c=0;bool from_backtrack=false;
-    typedef char box[5][7];
-    box bb,wb,bq,wq,*board[8][8];
-    for(i=0;i<5;i++){
-       for(j=0;j<7;j++){
-          wb[i][j]=' ';
-          wq[i][j]=' ';
-          bb[i][j]=char(219);
-          bq[i][j]=char(219);
-       }
+void merge(int *a, int *b, int low, int pivot, int high)
+{
+    int h,i,j,k;
+    h=low;
+    i=low;
+    j=pivot+1;
+
+    while((h<=pivot)&&(j<=high))
+    {
+        if(a[h]<=a[j])
+        {
+            b[i]=a[h];
+            h++;
+        }
+        else
+        {
+            b[i]=a[j];
+            j++;
+        }
+        i++;
     }
-    wq[1][1]=char(219);
-    wq[2][1]=char(219);
-    wq[3][1]=char(219);
-    wq[4][2]=char(219);
-    wq[1][3]=char(219);
-    wq[2][3]=char(219);
-    wq[3][3]=char(219);
-    wq[4][3]=char(219);
-    wq[4][4]=char(219);
-    wq[1][5]=char(219);
-    wq[2][5]=char(219);
-    wq[3][5]=char(219);
-    wq[4][5]=char(219);
-    bq[1][1]=' ';
-    bq[2][1]=' ';
-    bq[3][1]=' ';
-    bq[4][2]=' ';
-    bq[1][3]=' ';
-    bq[2][3]=' ';
-    bq[3][3]=' ';
-    bq[4][3]=' ';
-    bq[4][4]=' ';
-    bq[1][5]=' ';
-    bq[2][5]=' ';
-    bq[3][5]=' ';
-    bq[4][5]=' ';
-    for(i=0;i<8;i++){
-       for(j=0;j<8;j++){
-           if((i+j)%2==0) board[i][j]=&wb;
-           else           board[i][j]=&bb;
-       }
-    }
-    cout<<" ";
-    for(i=0;i<7*8;i++)
-        cout<<'_';
-    cout<<endl;
-    for(i=0;i<8;i++){
-        for(k=0;k<5;k++){
-          cout<<" "<<char(179);
-          for(j=0;j<8;j++){
-             for(l=0;l<7;l++)
-                cout<<(*board[i][j])[k][l];
-          }
-          cout<<char(179)<<endl;
+    if(h>pivot)
+    {
+        for(k=j; k<=high; k++)
+        {
+            b[i]=a[k];
+            i++;
         }
     }
-    while(true){
-      while(c<8){
-         if(!from_backtrack) q[c]=-1;
-         while(q[c]<8){
-            q[c]++;
-            if(q[c]==8){
-              backtrack(c);
-              continue;
-            }
-            if(ok(q,c)) break;
-         }
-      c++;
-      from_backtrack=false;
-      }
-      from_backtrack=true;
-      backtrack(c);
-     for(i=0;i<8;i++){
-       if((i+q[i])%2==0) board[q[i]][i]=&wq;
-       else              board[q[i]][i]=&bq;
+    else
+    {
+        for(k=h; k<=pivot; k++)
+        {
+            b[i]=a[k];
+            i++;
+        }
     }
-   }
-    cout<<" ";
-    for(i=0;i<8;i++)
-       cout<<char(196);
+    for(k=low; k<=high; k++) a[k]=b[k];
+}
+
+int main()
+{
+    int a[] = {12,10,43,23,-78,45,123,56,98,41,90,24};
+    int num;
+
+    num = sizeof(a)/sizeof(int);
+
+    int b[num];
+
+    mergesort(a,b,0,num-1);
+
+    for(int i=0; i<num; i++)
+        cout<<a[i]<<" ";
     cout<<endl;
-    system("PAUSE");
-    return EXIT_SUCCESS;
 }

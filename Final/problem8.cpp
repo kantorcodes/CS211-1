@@ -21,26 +21,15 @@ int minInArray(int a[], int size){
 }
 
 bool saddle_point_found(int a[][3], int size){
-    int max = a[0][0], max_row, min_col;
+    int max = a[0][0], max_row, max_col;
 
-    //find the max, min in the entire array
+    //find the max in the entire array
     for(int i=0; i<size; i++){
         for(int j=0; j<size; j++){
-            if(a[i][j]>max){
-                max = a[i][j];
-                max_row = i;
-                min_col = j;
-            }
         }
+        int col[size];
+        for(int i=0; i<size; i++) col[i] = a[i][max_col];
     }
-
-    int col[size];
-    for(int i=0; i<size; i++)
-        col[i] = a[i][max_col];
-
-    if(maxInArray(a[max_row], size)!=minInArray(col, size)) return false;
-    value = a[max_row][max_col];
-    return true;
 
 }
 

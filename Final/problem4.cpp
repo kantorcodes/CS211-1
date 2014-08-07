@@ -29,8 +29,8 @@ class stack{
         stack(int n){
             top = 0;
             p = new int[n];
-            size = n;
         }
+            size = n;
 
         //destructor
         ~stack(){

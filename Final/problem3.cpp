@@ -100,7 +100,7 @@ class Complex {
         return os; //for chaining
     }
 
-    istream& opreator<<(istream& is, Complex& kComplex){
+    istream& operator<<(istream& is, Complex& kComplex){
         is >> kComplex.r >> kComplex. i;
         return is; //for chaining
     }

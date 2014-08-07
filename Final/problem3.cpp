@@ -100,12 +100,22 @@ class Complex {
         return os; //for chaining
     }
 
-    istream& operator>>(istream& is, Complex& kComplex){
+    istream& operator>>(istream& is, Complex kComplex){
         is >> kComplex.r >> kComplex.i;
         return is; //for chaining
     }
 
 
 int main(){
+    Complex c;
+    c.setR(2);
+    c.setI(7);
+
+    Complex d;
+    d.setR(3);
+    d.setI(2);
+
+    cout << c + d;
+
     return 0;
 }

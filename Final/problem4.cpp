@@ -60,7 +60,7 @@ class stack{
 
 //Test it with the following main function:
 int main(){
-    stack s(10);
+    stack s;
     s.push(1);
     s.push(2);
     s.push(3);

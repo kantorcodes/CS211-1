@@ -115,7 +115,10 @@ int main(){
     d.setR(3);
     d.setI(2);
 
-    cout << c + d;
+    cout << c + d << endl;
+    cout << c - d << endl;
+    cout << c * d << endl;
+    cout << c / d << endl;
 
     return 0;
 }

@@ -31,7 +31,7 @@ class Complex {
         Complex complex;
         complex.r = a+c;
         complex.i = b+d;
-        return Complex;
+        return complex;
     }
 
     //overloaded subtract function for Complex – should return Complex
@@ -100,8 +100,8 @@ class Complex {
         return os; //for chaining
     }
 
-    istream& operator<<(istream& is, Complex& kComplex){
-        is >> kComplex.r >> kComplex. i;
+    istream& operator>>(istream& is, Complex& kComplex){
+        is >> kComplex.r >> kComplex.i;
         return is; //for chaining
     }
 

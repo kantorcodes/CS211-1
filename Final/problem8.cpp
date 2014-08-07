@@ -28,9 +28,8 @@ bool saddle_point_found(int a[][3], int size){
         for(int j=0; j<size; j++){
         }
         int col[size];
-        for(int i=0; i<size; i++) col[i] = a[i][max_col];
+        for(int i=0; i<size; i++) col[i] = a[i][j];
     }
-
 }
 
 int main(){

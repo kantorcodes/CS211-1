@@ -29,8 +29,8 @@ class stack{
         stack(int n){
             top = 0;
             p = new int[n];
-        }
             size = n;
+        }
 
         //destructor
         ~stack(){
@@ -38,7 +38,7 @@ class stack{
         };
 
         bool empty(){
-            return size==0;
+            return top==0;
         };
 
         void push(int n){
@@ -66,5 +66,6 @@ int main(){
     s.push(3);
     for (int i=0; i<3; i++)
     cout<<s.pop(); // should print 3,2 1
+    cout<<s.empty();
     return 0;
 }

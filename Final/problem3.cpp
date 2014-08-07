@@ -90,6 +90,9 @@ class Complex {
         i = n;
     }
 
+    friend ostream& operator<<(ostream& os, Complex kComplex);
+    friend istream& operator>>(istream& is, Complex kComplex);
+};
     //overloaded input and output functions for Complex
     ostream& operator<<(ostream& os, Complex kComplex){
         os << kComplex.r << " + " << kComplex.i << "i";
@@ -100,7 +103,7 @@ class Complex {
         is >> kComplex.r >> kComplex. i;
         return is; //for chaining
     }
-};
+
 
 int main(){
     return 0;

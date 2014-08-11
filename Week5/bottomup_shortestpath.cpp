@@ -52,7 +52,7 @@ int cost(){
                 }
 
                 //add weight in current cell to min(up, left, down); insert into costs array
-                costs[rows][col] = weight[row][col] + min;
+                costs[row][col] = weight[row][col] + min;
             }
         }
     }
